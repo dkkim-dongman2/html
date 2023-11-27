@@ -14,6 +14,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const accessKey = urlParams.get("ak");
       const campaignKey = urlParams.get("ck");
+      const testSet= urlParams.get("test");
 
       function playStreaming() {
         
@@ -34,9 +35,14 @@
         }
     </style>
     <div id="shoplive-player"></div>
+    <div id="ppp" style="display:none">kkkkk</div>
 
     <script defer>
       cloud.shoplive.init({ accessKey: accessKey });
+      if(testSet) {cloud.shoplive.setOverall("shoplive-player", {
+        campaignKey: campaignKey,
+      }); }
+      
       playStreaming();
     </script>
   </body>
