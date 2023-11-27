@@ -9,39 +9,15 @@
       type="text/javascript"
       src="https://static.shoplive.cloud/shoplive.js"
     ></script>
-    
+
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       const accessKey = urlParams.get("ak");
       const campaignKey = urlParams.get("ck");
-      const userID = urlParams.get("userID") || "";
-      const userName = urlParams.get("userName") || "";
-      
-
-      
-
-       
-
-      function setUserObject() {
-        event.preventDefault();
-        const userID = document.getElementById("userID").value;
-        const userName = document.getElementById("userName").value;
-        if (userID && userName) {
-
-          const url = new URL(window.location.href);
-          url.searchParams.set("userID", userID);
-          url.searchParams.set("userName", userName);
-          console.log(userID, userName);
-          window.location.href = url.toString();
-        }
-      }
 
       function playStreaming() {
-        document.getElementById("play-button").style.display = "none";
-        document.getElementById("greeting").style.display = "none";
-        cloud.shoplive.setOverall("shoplive-player", {
-        });
-	
+        
+        cloud.shoplive.setOverall("shoplive-player", {});
       }
     </script>
   </head>
@@ -56,114 +32,12 @@
         #shoplive-player {
           max-width: 100%;
         }
-        #input-form {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 80vw;
-          padding: 12px;
-          background-color: #fff;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        }
-      }
-      #greeting {
-        position: absolute;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24px;
-        padding: 16px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      }
-      #play-button {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24px;
-        padding: 16px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      #input-form {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 200px;
-        padding: 32px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      }
-      .form-group {
-        margin-bottom: 16px;
-      }
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-      }
-      input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      input[type="submit"] {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 16px;
-        font-size: 24px;
-        cursor: pointer;
-      }
     </style>
     <div id="shoplive-player"></div>
-    <div id="input-form">
-      <form onsubmit="setUserObject(event)">
-        <div class="form-group">
-          <label for="userID">User ID:</label>
-          <input type="text" id="userID" name="userID" required />
-        </div>
-        <div class="form-group">
-          <label for="userName">User Name:</label>
-          <input type="text" id="userName" name="userName" required />
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-    <div id="greeting"></div>
-    <button id="play-button" onclick="playStreaming()">Play Streaming</button>
+
     <script defer>
-      console.log(userID, userName);
-      if (userID && userName) {
-        document.getElementById(
-          "greeting"
-        ).textContent = `안녕하세요 ${userName}`;
-        cloud.shoplive.init({ accessKey: accessKey });
-        // cloud.shoplive.setUserObject({ userId: userID, userName: userName, canBid:true });
-        document.getElementById("input-form").style.display = "none";
-        document.getElementById("play-button").style.display = "block";
-        playStreaming()
-        
-      }
-      else {
-        document.getElementById("greeting").style.display = "none";
-      }
+      cloud.shoplive.init({ accessKey: accessKey });
+      playStreaming();
     </script>
   </body>
 </html>
